@@ -1,10 +1,15 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Star, Check, X, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+
+import diffuserImage from '@/assets/images/diffuser.png';
+import focusImage from '@/assets/images/focus.png';
+import relaxImage from '@/assets/images/relax.png';
+import energyImage from '@/assets/images/energy.png';
+import starterImage from '@/assets/images/starter.png';
 
 const Products = () => {
   const [cart, setCart] = useState([]);
@@ -30,7 +35,7 @@ const Products = () => {
       "Smart App Control",
       "Programmable Timer"
     ],
-    image: "Modern smart aromatherapy diffuser with sleek design and LED lighting"
+    image: diffuserImage
   };
 
   const essentialOils = [
@@ -39,28 +44,28 @@ const Products = () => {
       name: "Focus Blend",
       price: 49,
       description: "Enhance concentration and mental clarity with rosemary and peppermint.",
-      image: "Essential oil bottle labeled Focus Blend with rosemary and peppermint"
+      image: focusImage
     },
     {
       id: 3,
       name: "Relax Pack",
       price: 52,
       description: "Unwind and de-stress with lavender and chamomile essential oils.",
-      image: "Essential oil bottle labeled Relax Pack with lavender and chamomile"
+      image: relaxImage
     },
     {
       id: 4,
       name: "Energy Boost",
       price: 48,
       description: "Invigorate your senses with citrus and eucalyptus blends.",
-      image: "Essential oil bottle labeled Energy Boost with citrus and eucalyptus"
+      image: energyImage
     },
     {
       id: 5,
       name: "Starter Set",
       price: 89,
       description: "Perfect starter pack with our most popular essential oil collection.",
-      image: "Essential oil starter set with multiple bottles in elegant packaging"
+      image: starterImage
     }
   ];
 
@@ -69,24 +74,6 @@ const Products = () => {
     { name: "AI Mood Detection", basic: false, smart: true },
     { name: "App Integration", basic: false, smart: true },
     { name: "Personalized Oil Suggestions", basic: false, smart: true }
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      rating: 5,
-      content: "The AI mood detection is incredible. It knows exactly what I need after a stressful day."
-    },
-    {
-      name: "Michael Chen",
-      rating: 5,
-      content: "Game changer for my home office. The focus blend helps me stay productive all day."
-    },
-    {
-      name: "Emma Rodriguez",
-      rating: 5,
-      content: "Beautiful design and the app is so intuitive. Worth every penny for better sleep quality."
-    }
   ];
 
   return (
@@ -125,8 +112,8 @@ const Products = () => {
             >
               <img  
                 className="w-full h-96 object-cover rounded-2xl shadow-lg" 
-                alt={mainProduct.image}
-               src="https://images.unsplash.com/photo-1635865165118-917ed9e20936" />
+                alt={mainProduct.name}
+               src={mainProduct.image} />
             </motion.div>
 
             <motion.div
@@ -149,7 +136,7 @@ const Products = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <span className="text-3xl font-bold text-gray-900">${mainProduct.price}</span>
+                <span className="text-3xl font-bold text-gray-900">--</span>
                 <div className="flex items-center space-x-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -201,12 +188,12 @@ const Products = () => {
               >
                 <img  
                   className="w-full h-48 object-cover rounded-lg mb-4" 
-                  alt={oil.image}
-                 src="https://images.unsplash.com/photo-1671141411078-8ce4a54b5c73" />
+                  alt={oil.name}
+                 src={oil.image} />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{oil.name}</h3>
                 <p className="text-gray-600 text-sm mb-4">{oil.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold text-gray-900">${oil.price}</span>
+                  <span className="text-xl font-bold text-gray-900">--</span>
                   <Button 
                     onClick={() => handleAddToCart(oil)}
                     size="sm" 
@@ -275,58 +262,6 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Testimonials Slider */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real experiences from wellness enthusiasts
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-lg"
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-600 mb-6 italic">"{testimonial.content}"</p>
-                <div className="flex items-center">
-                  <img  
-                    className="w-12 h-12 rounded-full mr-4" 
-                    alt={`${testimonial.name} profile photo`}
-                   src="https://images.unsplash.com/photo-1575383596664-30f4489f9786" />
-                  <div>
-                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Cart Summary */}
       {cart.length > 0 && (
         <div className="fixed bottom-4 right-4 bg-white p-4 rounded-lg shadow-lg border">
@@ -334,7 +269,7 @@ const Products = () => {
             Cart ({cart.length} items)
           </p>
           <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
-            View Cart (${cart.reduce((total, item) => total + item.price, 0)})
+            View Cart (--)
           </Button>
         </div>
       )}

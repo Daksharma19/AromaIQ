@@ -1,8 +1,9 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Heart, Target, Globe, Leaf } from 'lucide-react';
+import dakshImage from '../assets/images/daksh.png';
+import ayushImage from '../assets/images/ayush.png';
 
 const About = () => {
   const values = [
@@ -43,19 +44,16 @@ const About = () => {
 
   const team = [
     {
-      name: "Sarah Chen",
+      name: "Ayush Raj",
       role: "Founder & CEO",
-      description: "Wellness Technology Pioneer"
+      description: "Wellness Technology Pioneer",
+      image: ayushImage
     },
     {
-      name: "Dr. Michael Torres",
+      name: "Daksh Sharma",
       role: "Chief Technology Officer",
-      description: "AI & Machine Learning Expert"
-    },
-    {
-      name: "Emma Rodriguez",
-      role: "Head of Wellness",
-      description: "Certified Aromatherapist"
+      description: "AI & Machine Learning Expert",
+      image: dakshImage
     }
   ];
 
@@ -208,7 +206,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
             {team.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -216,12 +214,12 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-lg text-center hover-lift"
+                className="bg-white p-8 rounded-2xl shadow-lg text-center hover-lift max-w-sm"
               >
                 <img  
                   className="w-32 h-32 rounded-full mx-auto mb-6 object-cover" 
                   alt={`${member.name} - ${member.role} at AromaIQ`}
-                 src="https://images.unsplash.com/photo-1575383596664-30f4489f9786" />
+                 src={member.image} />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{member.name}</h3>
                 <p className="text-green-600 font-medium mb-3">{member.role}</p>
                 <p className="text-gray-600 text-sm">{member.description}</p>

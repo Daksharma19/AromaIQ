@@ -24,7 +24,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
@@ -53,19 +53,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "hello@aromaiq.com",
+      content: "aromaiqscents@gmail.com",
       description: "Send us an email anytime"
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "1-800-AROMA-IQ",
+      content: "+91 92201 60679",
       description: "Mon-Fri 9AM-6PM PST"
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      content: "San Francisco, CA",
+      content: "----",
       description: "Wellness Innovation Hub"
     }
   ];
@@ -203,9 +203,9 @@ const Contact = () => {
               </div>
 
               <div className="text-center">
-                <Button 
+                <Button
                   type="submit"
-                  size="lg" 
+                  size="lg"
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4"
                 >
                   <Send className="mr-2 w-5 h-5" />
@@ -217,6 +217,7 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
       {/* FAQ Section */}
       <section className="section-padding bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -233,23 +234,27 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {[
               {
                 question: "How does the AI mood detection work?",
-                answer: "Our advanced sensors analyze environmental factors like lighting, temperature, and time of day, combined with your usage patterns to determine the optimal scent profile for your current state."
+                answer:
+                  "Our advanced sensors analyze environmental factors like lighting, temperature, and time of day, combined with your usage patterns to determine the optimal scent profile for your current state."
               },
               {
                 question: "What essential oils are compatible?",
-                answer: "AromaIQ works with all therapeutic-grade essential oils. We recommend our curated blends for optimal performance, but you can use any high-quality oils you prefer."
+                answer:
+                  "AromaIQ works with all therapeutic-grade essential oils. We recommend our curated blends for optimal performance, but you can use any high-quality oils you prefer."
               },
               {
                 question: "Is there a mobile app?",
-                answer: "Yes! The AromaIQ app is available for iOS and Android, offering complete control over your diffuser, custom blend creation, and scheduling features."
+                answer:
+                  "Yes! The AromaIQ app is available for iOS and Android, offering complete control over your diffuser, custom blend creation, and scheduling features."
               },
               {
                 question: "What's the warranty coverage?",
-                answer: "All AromaIQ products come with a 2-year warranty covering manufacturing defects and technical issues. We also offer 30-day returns for any reason."
+                answer:
+                  "All AromaIQ products come with a 2-year warranty covering manufacturing defects and technical issues. We also offer 30-day returns for any reason."
               }
             ].map((faq, index) => (
               <motion.div
@@ -258,15 +263,21 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gray-50 rounded-lg p-6"
+                className="bg-gray-50 rounded-lg"
               >
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
+                <details className="p-6 cursor-pointer">
+                  <summary className="text-lg font-semibold text-gray-900 mb-2 list-none flex justify-between items-center">
+                    {faq.question}
+                    <span className="ml-2 text-gray-500">+</span>
+                  </summary>
+                  <p className="text-gray-600 mt-2">{faq.answer}</p>
+                </details>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
     </>
   );
 };
