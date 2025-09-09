@@ -11,6 +11,7 @@ import relaxImage from '@/assets/images/relax.png';
 import energyImage from '@/assets/images/energy.png';
 import starterImage from '@/assets/images/starter.png';
 
+
 const Products = () => {
   const [cart, setCart] = useState([]);
   const { toast } = useToast();
